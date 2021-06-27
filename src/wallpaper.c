@@ -250,7 +250,7 @@ static void feh_wm_set_bg_maxed(Pixmap pmap, Imlib_Image im, int use_filelist,
 ** as the last time the program was called.
 */
 void feh_wm_gen_bg_script(char* fil, int centered, int scaled, int filled, int use_filelist) {
-	char * home = getenv("HOME");
+	char * home = (getenv("XDG_CACHE_HOME")) ? getenv("XDG_CACHE_HOME") : getenv("HOME");
 
 	if (!home)
 		return;

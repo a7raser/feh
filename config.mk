@@ -10,7 +10,7 @@ verscmp ?= 1
 xinerama ?= 1
 
 # Prefix for all installed files
-PREFIX ?= /usr/local
+PREFIX ?= /usr
 ICON_PREFIX ?= ${DESTDIR}${PREFIX}/share/icons
 
 # icons in /usr/share/local/icons (and other prefixes != /usr) are not
