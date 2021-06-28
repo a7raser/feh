@@ -1,3 +1,6 @@
+## Small patch so .fehbg adheres to XDG Base Directory Specification
+
+
 [![build status](https://travis-ci.org/derf/feh.svg?branch=master)](https://travis-ci.org/derf/feh)
 
 Feh – Image viewer and Cataloguer
