@@ -1,4 +1,5 @@
-# Small patch so .fehbg adheres to XDG Base Directory Specification
+Small patch so .fehbg adheres to XDG Base Directory Specification
+
 Use-case: Randomize wallpapers and retrieve current wallpaper for use with betterlockscreen.
 
 
