@@ -24,18 +24,14 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 */
 
-#ifdef HAVE_LIBEXIF
-#include <libexif/exif-data.h>
-#endif
-
-#ifdef HAVE_LIBCURL
-#include <curl/curl.h>
-#endif
-
 #include "feh.h"
 #include "filelist.h"
 #include "signals.h"
 #include "options.h"
+
+#ifdef HAVE_LIBCURL
+#include <curl/curl.h>
+#endif
 
 gib_list *filelist = NULL;
 gib_list *original_file_items = NULL; /* original file items from argv */
@@ -202,7 +198,7 @@ void add_file_to_filelist_recursively(char *origpath, unsigned char level)
 	struct stat st;
 	char *path;
 
-	if (!origpath)
+	if (!origpath || *origpath == '\0')
 		return;
 
 	path = estrdup(origpath);

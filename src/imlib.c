@@ -1166,7 +1166,7 @@ void feh_draw_exif(winwidget w)
 
 	if (buffer[0] == '\0')
 	{
-		snprintf(buffer, EXIF_MAX_DATA, "%s", estrdup("Failed to run exif command"));
+		snprintf(buffer, EXIF_MAX_DATA, "%s", "Failed to run exif command");
 		gib_imlib_get_text_size(fn, buffer, NULL, &width, &height, IMLIB_TEXT_TO_RIGHT);
 		info_buf[no_lines] = estrdup(buffer);
 		no_lines++;
@@ -1178,29 +1178,28 @@ void feh_draw_exif(winwidget w)
 		{
 			/* max 128 lines */
 			pos2 = 0;
-			while ( pos2 < 256 ) /* max 256 chars per line */
+			while ( pos2 < 255 ) /* max 255 chars + 1 null byte per line */
 			{
 				if ( (buffer[pos] != '\n')
 				      && (buffer[pos] != '\0') )
 				{
-			    info_line[pos2] = buffer[pos];
-			  }
-			  else if ( buffer[pos] == '\0' )
-			  {
-			    pos = EXIF_MAX_DATA; /* all data seen */
-			    info_line[pos2] = '\0';
+					info_line[pos2] = buffer[pos];
 				}
-			  else
-			  {
-			  	info_line[pos2] = '\0'; /* line finished, continue with next line*/
+				else if ( buffer[pos] == '\0' )
+				{
+					pos = EXIF_MAX_DATA; /* all data seen */
+					break;
+				}
+				else
+				{
+					pos++; /* line finished, continue with next line*/
+					break;
+				}
 
-			    pos++;
-			    break;
-			  }
-
-			   pos++;
-			   pos2++;
+				pos++;
+				pos2++;
 			}
+			info_line[pos2] = '\0';
 
 			gib_imlib_get_text_size(fn, info_line, NULL, &line_width,
                               &line_height, IMLIB_TEXT_TO_RIGHT);
